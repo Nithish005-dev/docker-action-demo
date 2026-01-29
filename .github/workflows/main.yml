@@ -1,26 +1,14 @@
 name: Test Docker Action
  
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: "Enter your name"
-        required: true
-        default: "Guest"
-      color:
-        description: "Enter your favorite color"
-        required: true
-        default: "Blue"
+  workflow_dispatch:   # Manual trigger in GitHub
  
 jobs:
   test-action:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3   # MUST include this to access local action
  
       - name: Run my Docker action
         uses: ./github/actions/my-docker-action
-        with:
-          name: ${{ github.event.inputs.name }}
-          color: ${{ github.event.inputs.color }}
